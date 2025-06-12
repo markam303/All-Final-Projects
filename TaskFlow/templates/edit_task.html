@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Edit Task - TaskFlow{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Edit Task</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" 
+                               value="{{ task.title }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" 
+                                  rows="4" required>{{ task.description }}</textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="priority" class="form-label">Priority</label>
+                            <select class="form-select" id="priority" name="priority" required>
+                                <option value="low" {% if task.priority == 'low' %}selected{% endif %}>Low</option>
+                                <option value="medium" {% if task.priority == 'medium' %}selected{% endif %}>Medium</option>
+                                <option value="high" {% if task.priority == 'high' %}selected{% endif %}>High</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="due_date" class="form-label">Due Date</label>
+                            <input type="datetime-local" class="form-control" id="due_date" 
+                                   name="due_date" 
+                                   value="{% if task.due_date %}{{ task.due_date.strftime('%Y-%m-%dT%H:%M') }}{% endif %}">
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-warning">Update Task</button>
+                        <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-secondary">Cancel</a>
+                        {% if not task.completed %}
+                        <a href="{{ url_for('tasks.complete_task', task_id=task.id) }}" 
+                           class="btn btn-success">Mark Complete</a>
+                        {% endif %}
+                        <a href="{{ url_for('tasks.delete_task', task_id=task.id) }}" 
+                           class="btn btn-danger" 
+                           onclick="return confirm('Delete this task?')">Delete</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task Info -->
+        <div class="card mt-3">
+            <div class="card-body">
+                <small class="text-muted">
+                    Created: {{ task.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+                    {% if task.completed_at %}
+                    | Completed: {{ task.completed_at.strftime('%B %d, %Y at %I:%M %p') }}
+                    {% endif %}
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
