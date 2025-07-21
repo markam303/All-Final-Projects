@@ -6,7 +6,7 @@
 
 TaskFlow is a web application I built to help people manage their to-do lists in a more organized and effective way. The main goal was to solve a common, real-world problem: keeping track of daily tasks without feeling overwhelmed. While simple checklists are useful, they often lack features for prioritization, categorization, and secure, private access. TaskFlow addresses this by providing a clean, secure, and user-friendly tool that allows individuals to create a personal account and manage their tasks from a central dashboard.
 
-This project was built for my CS50 final project and serves as a practical application of the many concepts I learned throughout the course[6]. It combines a Python and Flask backend for application logic, a SQL database for data persistence, and HTML/CSS with the Jinja templating engine for a dynamic front end. It represents a complete, full-stack application built from scratch.
+This project was built for my CS50 final project and serves as a practical application of the many concepts I learned throughout the course. It combines a Python and Flask backend for application logic, a SQL database for data persistence, and HTML/CSS with the Jinja templating engine for a dynamic front end. It represents a complete, full-stack application built from scratch.
 
 ### Key Features
 
